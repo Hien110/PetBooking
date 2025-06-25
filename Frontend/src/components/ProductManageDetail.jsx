@@ -17,7 +17,7 @@ import { CategoryService } from "@/services/categoryService";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const ProductManageDetail = ({ onAddNew }) => {
+const ProductManageDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [product, setProduct] = useState(null);
@@ -27,6 +27,13 @@ const ProductManageDetail = ({ onAddNew }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || user.role !== "shop") {
+      navigate("/");
+      return;
+    } 
+  }, [navigate]);
   const handleDelete = async () => {
     try {
       await ProductService.deleteProduct(id);
@@ -264,7 +271,7 @@ const ProductManageDetail = ({ onAddNew }) => {
             className="w-full"
             onClick={() => setOpenDelete(true)}
           >
-            Xoá dịch vụ
+            Xoá sản phẩm
           </Button>
         </div>
 

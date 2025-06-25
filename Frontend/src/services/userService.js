@@ -89,7 +89,17 @@ export const UserService = {
         phone: userData.phone,
         gender: userData.gender,
         dob: null, // Giả sử không có trường dob trong userData
-      });
+      });     
+        // Cập nhật lại thông tin người dùng trong localStorage
+        const user = JSON.parse(localStorage.getItem("user"));
+        user.fullname = userData.name;
+        user.email = userData.email;
+        user.phone = userData.phone;
+        user.address = userData.address;
+        user.gender = userData.gender;
+        localStorage.setItem("user", JSON.stringify(user));
+        console.log("Thông tin người dùng đã được cập nhật:", user);
+
       return res.data;
     } catch (error) {
       console.error("Lỗi khi gọi updateUser:", error);

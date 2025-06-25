@@ -1,7 +1,12 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 const ProductDetailCart = ({ product }) => {
-  
+
+  const navigate = useNavigate();
+
   const [quantity, setQuantity] = useState(1);
   const [listImage, setListImage] = useState([]);
   
@@ -35,6 +40,11 @@ const ProductDetailCart = ({ product }) => {
     color: "white",
   };
 
+  const handleBuyNow = () => {
+  navigate(`/order/${product._id}`, {
+    state: { quantity: quantity, product },
+  });
+};
   return (
     <div className="ml-20 mr-20 rounded-3xl bg-[#ffffff] mt-5 p-6">
       <main className="mx-auto flex flex-col md:flex-row gap-8">
@@ -48,17 +58,17 @@ const ProductDetailCart = ({ product }) => {
             style={{ width: "380px", height: "450px" }}
           >
             <img
-              src={product?.image[0]?.url || "https://via.placeholder.com/380x450"}
+              src={product?.image[0] || "https://via.placeholder.com/380x450"}
               alt="Snack bag"
               className="object-contain max-h-full"
-              style={{ maxWidth: "100%", maxHeight: "100%" }}
+              style={{ width: "380px", height: "450px" }}
             />
           </div>
           <div className="flex gap-4">
             {listImage.map((image, idx) => (
               <img
                 key={idx}
-                src={image.url}
+                src={image}
                 alt={`Thumbnail ${idx + 1}`}
                 className="rounded-xl border object-contain w-18 h-18 cursor-pointer"
                 width={90}
@@ -171,6 +181,7 @@ const ProductDetailCart = ({ product }) => {
                 "&:hover": { backgroundColor: "#c4662a" },
                 textTransform: "none",
               }}
+              onClick={() => handleBuyNow()}
             >
               Mua ngay
             </Button>

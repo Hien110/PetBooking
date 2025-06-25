@@ -14,9 +14,9 @@ class orderController {
 
   async createOrder(req, res) {
     try {
-      const { productId, userId, totalPrice, address, phone } = req.body;
+      const { products, userId, totalPrice, address, phone } = req.body;
       const newOrder = new Order({
-        productId,
+        products,
         userId,
         totalPrice,
         address,
@@ -32,7 +32,7 @@ class orderController {
   async getOrderById(req, res) {
     try {
       const order = await Order.findById(req.params.id)
-        .populate("productId")
+        .populate("products.productId")
         .populate("userId");
       if (!order) {
         return res.status(404).json({ message: "Order not found" });
@@ -51,7 +51,7 @@ class orderController {
         { address, phone },
         { new: true }
       )
-        .populate("productId")
+        .populate("products.productId")
         .populate("userId");
       if (!order) {
         return res.status(404).json({ message: "Order not found" });
@@ -77,10 +77,12 @@ class orderController {
   async getOrdersByUserId(req, res) {
     try {
       const orders = await Order.find({ userId: req.params.userId })
-        .populate("productId")
+        .populate("products.productId")
         .populate("userId");
       if (orders.length === 0) {
-        return res.status(404).json({ message: "No orders found for this user" });
+        return res
+          .status(404)
+          .json({ message: "No orders found for this user" });
       }
       return res.status(200).json(orders);
     } catch (error) {
@@ -90,13 +92,40 @@ class orderController {
 
   async getOrdersByProductId(req, res) {
     try {
-      const orders = await Order.find({ productId: req.params.productId })
-        .populate("productId")
+      const orders = await Order.find({
+        "products.productId": req.params.productId,
+      })
+        .populate("products.productId")
         .populate("userId");
       if (orders.length === 0) {
-        return res.status(404).json({ message: "No orders found for this product" });
+        return res
+          .status(404)
+          .json({ message: "No orders found for this product" });
       }
       return res.status(200).json(orders);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
+  async getOrderBySellerId(req, res) {
+    try {
+      const orders = await Order.find()
+      .populate({
+        path: "products.productId",
+        select: "productName sellerId price image", // chỉ lấy những trường cần thiết
+      })
+      .populate("userId");
+
+      const sellerId = req.params.sellerId; // Lấy sellerId từ tham số URL
+
+      // Lọc các đơn hàng có ít nhất 1 sản phẩm thuộc seller đó
+      const filteredOrders = orders.filter((order) =>
+        order.products.some(
+          (p) => p.productId && p.productId.sellerId.toString() === sellerId
+        )
+      );
+      return res.status(200).json(filteredOrders);
     } catch (error) {
       return res.status(500).json({ message: "Server error", error });
     }
