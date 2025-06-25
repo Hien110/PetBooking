@@ -89,7 +89,7 @@ const CreateProduct = ({ onCreate }) => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-0 md:p-6 mt-4">
+    <div className="">
       {/* Form */}
       <div className="p-4 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">

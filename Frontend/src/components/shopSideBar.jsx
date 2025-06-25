@@ -23,7 +23,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex-shrink-0 w-full md:w-[220px] lg:w-[260px] pr-0 md:pr-6">
+    <div className="flex-shrink-0 w-full p-4 bg-[#FFFAF6] border-r border-gray-200">
       <div className="flex flex-col space-y-3">
         <div className="rounded-lg bg-white px-5 py-3 text-sm text-gray-700 shadow-sm">
           Xin Chào
@@ -56,8 +56,8 @@ const Sidebar = () => {
           Quản lí cửa hàng
         </button>
         <button
-          onClick={() => handleClick("/shop/orders")}
-          className={getButtonStyle("/shop/orders")}
+          onClick={() => handleClick("/shop/order-shop")}
+          className={getButtonStyle("/shop/order-shop")}
         >
           Quản lí đặt hàng
         </button>

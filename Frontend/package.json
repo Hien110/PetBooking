@@ -23,6 +23,7 @@
     "bootstrap": "^5.3.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "frontend": "file:",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",
@@ -32,7 +33,9 @@
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "timezone": "^1.0.23",
+    "utc": "^0.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

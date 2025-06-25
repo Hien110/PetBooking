@@ -44,7 +44,7 @@ function UserMenu() {
           ? [
               <MenuItem
                 key="shop-manage"
-                onClick={() => handleGoTo("/shop-management")}
+                onClick={() => handleGoTo("/shop/product-manager")}
               >
                 Quản lí cửa hàng
               </MenuItem>,
@@ -56,7 +56,7 @@ function UserMenu() {
               <MenuItem key="profile" onClick={() => handleGoTo("/profile/" + user._id)}>
                 Hồ sơ
               </MenuItem>,
-              <MenuItem key="orders" onClick={() => handleGoTo("/orders")}>
+              <MenuItem key="orders" onClick={() => handleGoTo("/order-personal/" + user._id)}>
                 Đơn mua
               </MenuItem>,
               <MenuItem key="logout" onClick={handleLogout}>
