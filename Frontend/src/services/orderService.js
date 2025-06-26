@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_ORDER = "http://localhost:3000/api/order";
+const API_ORDER = "https://backend-petbooking.onrender.com/api/order";
 
 const orderService = {
   updateStatusOrder: async (orderId, status) => {

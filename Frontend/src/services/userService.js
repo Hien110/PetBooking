@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/user/account";
+const API_URL = "https://backend-petbooking.onrender.com/api/user/account";
 
 export const UserService = {
   login: async (email, password) => {
