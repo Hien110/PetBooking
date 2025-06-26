@@ -11,7 +11,7 @@ export default function ServiceShopCard({
 }) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/service/${service._id}`);
+    navigate(`/shop/service-manager/${service._id}`);
     console.log(service._id);
   };
   return (

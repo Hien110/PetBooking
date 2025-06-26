@@ -11,7 +11,7 @@ import { UserService } from "../services/userService";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
-  const [fullname, setFullname] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("customer"); // default là customer
@@ -23,8 +23,8 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(role, fullname, email, password);
-      await UserService.register(fullname, email, password, role);
+      console.log(role, name, email, password);
+      await UserService.register(name, email, password, role);
       navigate("/verify", { state: { email } });
     } catch (err) {
       setErrorMsg(err.message);
@@ -77,10 +77,10 @@ const RegisterPage = () => {
               {role === "customer" ? "Họ và Tên" : "Tên cửa hàng"}
             </label>
             <input
-              id="fullname"
+              id="name"
               type="text"
-              value={fullname}
-              onChange={(e) => setFullname(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full border border-[#c56a38] rounded-xl py-3 px-5 mb-4 text-[#2a2e83] text-base outline-none"
             />
 
