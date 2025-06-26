@@ -11,8 +11,8 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 // Load biến môi trường
-dotenv.config({ path: "./.env" });
-
+dotenv.config();
+// { path: "./.env" }
 // Kết nối DB
 db.connect();
 
@@ -47,10 +47,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/petbooking",
+      mongoUrl: process.env.MONGO_URI || "mongodb+srv://admin:admin@cluster0.tc4yg.mongodb.net/petbooking?retryWrites=true&w=majority&appName=Cluster0",
       collectionName: "sessions",
     }),
-    cookie: { secure: false }, // Đặt secure: true nếu dùng HTTPS
+    cookie: { secure: process.env.NODE_ENV === "production" }, // Đặt secure: true nếu dùng HTTPS
   })
 );
 app.use((req, res, next) => {
