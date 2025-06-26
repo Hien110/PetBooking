@@ -32,6 +32,12 @@ const Sidebar = () => {
           </div>
         </div>
         <button
+          onClick={() => handleClick("/shop/profile")}
+          className={getButtonStyle("/shop/profile")}
+        >
+          Quản lí cửa hàng
+        </button>
+        <button
           onClick={() => handleClick("/shop/revenue")}
           className={getButtonStyle("/shop/revenue")}
         >
@@ -49,12 +55,7 @@ const Sidebar = () => {
         >
           Quản lí sản phẩm
         </button>
-        <button
-          onClick={() => handleClick("/shop/store")}
-          className={getButtonStyle("/shop/store")}
-        >
-          Quản lí cửa hàng
-        </button>
+
         <button
           onClick={() => handleClick("/shop/order-shop")}
           className={getButtonStyle("/shop/order-shop")}

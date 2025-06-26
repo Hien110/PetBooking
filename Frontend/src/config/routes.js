@@ -29,6 +29,9 @@ const BookingSuccessPage = React.lazy(() => import("../pages/BookingSuccessPage"
 const BookingPersonalPage = React.lazy(() => import("../pages/BookingPersonalPage"));
 const BookingShopPage = React.lazy(() => import("../pages/BookingShopPage"));
 
+const ShopProfilePage = React.lazy(() => import("../pages/ShopProfilePage"));
+const ShopProfileUpdatePage = React.lazy(() => import("../pages/ShopProfileUpdatePage"));
+
 const AppRoute = [
   { path: ROUTE_PATH.HOME, page: HomePage, layout: MainLayout },
   { path: ROUTE_PATH.LOGIN, page: LoginPage },
@@ -57,6 +60,10 @@ const AppRoute = [
   { path: ROUTE_PATH.BOOKING_SERVICE_SUCCESS, page: BookingSuccessPage, layout: MainLayout },
   { path: ROUTE_PATH.BOOKING_PERSONAL, page: BookingPersonalPage, layout: MainLayout },
   { path: ROUTE_PATH.BOOKING_SHOP, page: BookingShopPage, layout: MainLayout },
+
+  // shop profile
+  { path: ROUTE_PATH.SHOP_PROFILE, page: ShopProfilePage, layout: MainLayout },
+  { path: ROUTE_PATH.SHOP_EDIT_PROFILE, page: ShopProfileUpdatePage, layout: MainLayout },
 ];
 
 export default AppRoute;
