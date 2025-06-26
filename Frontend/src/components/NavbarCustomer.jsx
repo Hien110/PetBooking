@@ -52,7 +52,7 @@ function NavbarCustomer({ user }) {
 
         <li className="flex items-center space-x-2">
           <CalendarTodayIcon sx={{ color: "#d95a1a", fontSize: "24px" }} />
-          <span className="text-[14px] mt-2 font-semibold ml-1" onClick={() => {window.location.href = `/booking-personal`}}>Lịch hẹn</span>
+          <span className="text-[14px] mt-2 font-semibold ml-1 hover:cursor-pointer" onClick={() => {window.location.href = `/booking-personal`}}>Lịch hẹn</span>
         </li>
       </ul>
     </div>

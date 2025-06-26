@@ -23,10 +23,10 @@ export const UserService = {
     }
   },
 
-  register: async (fullname, email, password, role) => {
+  register: async (name, email, password, role) => {
     try {
       const res = await axios.post(`${API_URL}/register`, {
-        fullname,
+        name,
         email,
         password,
         role,
@@ -89,16 +89,16 @@ export const UserService = {
         phone: userData.phone,
         gender: userData.gender,
         dob: null, // Giả sử không có trường dob trong userData
-      });     
-        // Cập nhật lại thông tin người dùng trong localStorage
-        const user = JSON.parse(localStorage.getItem("user"));
-        user.fullname = userData.name;
-        user.email = userData.email;
-        user.phone = userData.phone;
-        user.address = userData.address;
-        user.gender = userData.gender;
-        localStorage.setItem("user", JSON.stringify(user));
-        console.log("Thông tin người dùng đã được cập nhật:", user);
+      });
+      // Cập nhật lại thông tin người dùng trong localStorage
+      const user = JSON.parse(localStorage.getItem("user"));
+      user.fullname = userData.name;
+      user.email = userData.email;
+      user.phone = userData.phone;
+      user.address = userData.address;
+      user.gender = userData.gender;
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log("Thông tin người dùng đã được cập nhật:", user);
 
       return res.data;
     } catch (error) {
@@ -106,6 +106,33 @@ export const UserService = {
       throw new Error(
         error.response?.data?.message ||
           "Cập nhật thông tin người dùng thất bại"
+      );
+    }
+  },
+
+  updateProfileShop: async (profileShop) => {
+    console.log("profileShop:", profileShop);
+    try {
+      const res = await axios.post(
+        `${API_URL}/shop/updateProfile`,
+        { profileShop }
+      );
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        const updatedUser = {
+          ...user,
+          ...profileShop, // Gộp dữ liệu mới vào user cũ
+        };
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        console.log("Thông tin cửa hàng đã được cập nhật:", updatedUser);
+      }
+
+      return res.data;
+    } catch (error) {
+      console.error("Lỗi khi gọi updateProfileShop:", error);
+      throw new Error(
+        error.response?.data?.message || "Cập nhật thông tin cửa hàng thất bại"
       );
     }
   },

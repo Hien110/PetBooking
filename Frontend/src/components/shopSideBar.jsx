@@ -5,6 +5,11 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user || user.role !== "shop") {
+    return null; // Return null if user is not a shop owner
+  }
+
   const handleClick = (path) => {
     navigate(path);
   };
@@ -27,10 +32,16 @@ const Sidebar = () => {
       <div className="flex flex-col space-y-3">
         <div className="rounded-lg bg-white px-5 py-3 text-sm text-gray-700 shadow-sm">
           Xin Chào
-          <div className="mt-1 font-pacifico text-orange-500 text-lg leading-none">
-            Bí Bo Shop
+          <div className="mt-1 font-pacifico text-orange-500 font-bold text-[24px] leading-none">
+            {user.name}
           </div>
         </div>
+        <button
+          onClick={() => handleClick("/shop/profile")}
+          className={getButtonStyle("/shop/profile")}
+        >
+          Quản lí cửa hàng
+        </button>
         <button
           onClick={() => handleClick("/shop/revenue")}
           className={getButtonStyle("/shop/revenue")}
@@ -49,12 +60,7 @@ const Sidebar = () => {
         >
           Quản lí sản phẩm
         </button>
-        <button
-          onClick={() => handleClick("/shop/store")}
-          className={getButtonStyle("/shop/store")}
-        >
-          Quản lí cửa hàng
-        </button>
+
         <button
           onClick={() => handleClick("/shop/order-shop")}
           className={getButtonStyle("/shop/order-shop")}
