@@ -11,6 +11,8 @@ import {
   Button
 } from '@mui/material';
 
+import { useNavigate } from 'react-router-dom';
+
 import { UserService } from '../services/userService'; 
 
 const EditProfileDialog = ({ open, onClose, user }) => {
@@ -43,6 +45,8 @@ const EditProfileDialog = ({ open, onClose, user }) => {
     }));
   };
 
+  const navigate = useNavigate();
+  
   const handleSubmit = async () => {
     // Gọi API để cập nhật thông tin người dùng
     try {
@@ -51,7 +55,7 @@ const EditProfileDialog = ({ open, onClose, user }) => {
       console.error("Lỗi khi cập nhật thông tin người dùng:", error);
     }
     onClose(); // đóng dialog
-    window.location.href = `/profile/${user._id}`; // chuyển hướng về trang hồ sơ
+    navigate(`/profile/${user._id}`); // chuyển hướng về trang hồ sơ
   };
 
   return (

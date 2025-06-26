@@ -3,8 +3,10 @@ import Sidebar from "../components/shopSideBar";
 import SubHeader from "@/components/SubHeader";
 import { UserService } from "@/services/userService";
 
+import { useNavigate } from "react-router-dom";
 const ShopProfilePage = () => {
   const [shop, setShop] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchShop = async () => {
@@ -75,7 +77,7 @@ const ShopProfilePage = () => {
 
             <button
               onClick={() => {
-                window.location.href = `/shop/update-profile`;
+                navigate(`/shop/update-profile`);
               }}
               className="mt-6 px-4 py-2 bg-custom-orange text-white rounded-lg hover:bg-orange-600 transition-colors duration-200"
             >

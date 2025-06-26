@@ -3,9 +3,10 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import scheduleService from "@/services/scheduleService";
-
+import { useNavigate } from "react-router-dom";
  function BookingSuccessPage() {
   const [booking, setBooking] = useState(null);
+  const navigate = useNavigate();
 
   dayjs.extend(utc);
   dayjs.extend(timezone);
@@ -79,7 +80,7 @@ import scheduleService from "@/services/scheduleService";
 
           <button
             className="p-2 rounded-xl mt-8 bg-custom-orange flex items-center justify-center w-full text-white hover:bg-[#e35e25] transition-colors duration-300"
-            onClick={() => (window.location.href = "/")}
+            onClick={() => navigate("/")}
           >
             Quay lại trang chủ
           </button>

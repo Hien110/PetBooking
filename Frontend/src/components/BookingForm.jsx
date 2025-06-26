@@ -7,6 +7,9 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
+import { useNavigate } from "react-router-dom";
+
+
 export default function BookingForm({ service }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -14,6 +17,8 @@ export default function BookingForm({ service }) {
   const [bookedTimes, setBookedTimes] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
 
+  const navigate = useNavigate();
+  
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
@@ -56,7 +61,7 @@ export default function BookingForm({ service }) {
     ScheduleService.createSchedule(bookingData)
       .then((response) => {
         console.log("Đặt lịch thành công:", response);
-        window.location.href = `/booking-service-success/${response._id}`;
+        navigate(`/booking-service-success/${response._id}`);
       })
       .catch((error) => {
         console.error("Lỗi khi đặt lịch:", error);

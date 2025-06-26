@@ -25,7 +25,7 @@ function UserMenu() {
   const handleLogout = () => {
     localStorage.clear();
     handleClose();
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (
