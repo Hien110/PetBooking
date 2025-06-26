@@ -23,10 +23,10 @@ export const UserService = {
     }
   },
 
-  register: async (fullname, email, password, role) => {
+  register: async (name, email, password, role) => {
     try {
       const res = await axios.post(`${API_URL}/register`, {
-        fullname,
+        name,
         email,
         password,
         role,

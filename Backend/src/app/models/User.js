@@ -7,7 +7,7 @@ const User = new Schema({
     dob: { type: Date },
     role: { type: String, default: 'user' },
     description: { type: String, default: '' },
-    avatar: { type: String, default: '/img/dafaultAvatar.jpg' },
+    avatar: { type: String, default: 'https://img.thuthuatphanmem.vn/uploads/2018/09/22/avatar-trang-den-dep_015640236.png' },
     address: { type: String, default: '' },
     phone: { type: String },
     email: { type: String, required: true },
