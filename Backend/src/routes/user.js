@@ -11,6 +11,7 @@ router.post('/account/verify', userController.verifyUser);
 router.post('/account/login', userController.loginUser);
 router.post('/account/change-password', userController.changePassword);
 router.post('/account/change-profile/:id', userController.changeProfileInformation);
+router.post('/account/shop/updateProfile', userController.updateProfileShop);
 
 
 module.exports = router;

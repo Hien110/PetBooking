@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 class userController {
   async getAllUsers(req, res) {
     try {
-      const users = await User.find()
-        // .populate("followers")
-        // .populate("serviceId");
+      const users = await User.find();
+      // .populate("followers")
+      // .populate("serviceId");
       return res.status(200).json(users);
     } catch (error) {
       return res.status(500).json({ message: "Server error", error });
@@ -15,9 +15,9 @@ class userController {
 
   async getUserShop(req, res) {
     try {
-      const shop = await User.find({ role: "shop" })
-        // .populate("followers")
-        // .populate("serviceId");
+      const shop = await User.find({ role: "shop" });
+      // .populate("followers")
+      // .populate("serviceId");
       if (!shop) {
         return res.status(404).json({ message: "Shop not found" });
       }
@@ -29,9 +29,9 @@ class userController {
 
   async getUser(req, res) {
     try {
-      const user = await User.findById(req.params.id)
-        // .populate("followers")
-        // .populate("serviceId");
+      const user = await User.findById(req.params.id);
+      // .populate("followers")
+      // .populate("serviceId");
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -73,7 +73,7 @@ class userController {
 
       // Lưu người dùng vào cơ sở dữ liệu
       const newUser = new User({
-        role: role || "user", 
+        role: role || "user",
         name,
         email,
         password: hashedPassword,
@@ -214,6 +214,39 @@ class userController {
       res.status(200).json({ message: "Cập nhật thông tin thành công" });
     } catch (error) {
       res.status(500).json({ message: "Lỗi server", error });
+    }
+  }
+  async updateProfileShop(req, res) {
+    try {
+      const { profileShop } = req.body;
+      const userId = profileShop._id;
+      console.log("profileShop:", profileShop);
+      
+      if (!userId) {
+        return res.status(400).json({ message: "Thiếu ID người dùng" });
+      }
+
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: "Người dùng không tồn tại" });
+      }
+
+      Object.assign(user, {
+        name: profileShop.name || user.name,
+        description: profileShop.description || user.description,
+        address: profileShop.address || user.address,
+        phone: profileShop.phone || user.phone,
+        avatar: profileShop.avatar || user.avatar,
+      });
+
+      await user.save();
+
+      res
+        .status(200)
+        .json({ message: "Cập nhật thông tin cửa hàng thành công" });
+    } catch (error) {
+      console.error("Lỗi khi cập nhật thông tin shop:", error);
+      res.status(500).json({ message: "Đã xảy ra lỗi server" });
     }
   }
 }

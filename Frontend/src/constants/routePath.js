@@ -9,6 +9,8 @@ export const ROUTE_PATH = {
   SERVICE: "/service",
   SERVICE_DETAIL_PUBLIC: "/service/:id",
   SHOP: "/shop",
+  SHOP_PROFILE: "/shop/profile",
+  SHOP_EDIT_PROFILE: "/shop/update-profile",
   ORDER: "/order/:id",
   ORDER_SUCCESS: "/order/order-success/:id",
   ORDER_PERSONAL: "/order-personal",
