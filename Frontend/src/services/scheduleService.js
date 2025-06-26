@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/schedule";
+const API_URL = "https://backend-petbooking.onrender.com/api/schedule";
 
 const scheduleService = {
   updateStatusSchedule: async (id, status) => {
