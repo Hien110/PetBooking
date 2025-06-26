@@ -56,7 +56,7 @@ function UserMenu() {
               <MenuItem key="profile" onClick={() => handleGoTo("/profile/" + user._id)}>
                 Hồ sơ
               </MenuItem>,
-              <MenuItem key="orders" onClick={() => handleGoTo("/order-personal/" + user._id)}>
+              <MenuItem key="orders" onClick={() => handleGoTo("/order-personal/")}>
                 Đơn mua
               </MenuItem>,
               <MenuItem key="logout" onClick={handleLogout}>

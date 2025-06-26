@@ -3,6 +3,10 @@ import axios from "axios";
 const API_URL = "http://localhost:3000/api/schedule";
 
 const scheduleService = {
+  updateStatusSchedule: async (id, status) => {
+    const response = await axios.post(`${API_URL}/update-status/${id}`, { status });
+    return response.data;
+  },
   getAllSchedules: async () => {
     const response = await axios.get(`${API_URL}/get`);
     return response.data;

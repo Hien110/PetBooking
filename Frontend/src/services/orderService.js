@@ -3,6 +3,15 @@ import axios from "axios";
 const API_ORDER = "http://localhost:3000/api/order";
 
 const orderService = {
+  updateStatusOrder: async (orderId, status) => {
+    try {
+      const response = await axios.post(`${API_ORDER}/update-status/${orderId}`, { status });
+      return response.data;
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      throw error;
+    }
+  },
   createOrder: async (orderData) => {
     try {
       const response = await axios.post(`${API_ORDER}/create`, {

@@ -10,5 +10,6 @@ router.delete('/delete/:id', scheduleController.deleteSchedule);
 router.get('/getByUserId/:userId', scheduleController.getScheduleByUserId);
 router.get('/getByShopId/:shopId', scheduleController.getScheduleByShopId);
 router.get("/by-date/:serviceId", scheduleController.getSchedulesByDate);
+router.post('/update-status/:id', scheduleController.updateStatusSchedule);
 
 module.exports = router;

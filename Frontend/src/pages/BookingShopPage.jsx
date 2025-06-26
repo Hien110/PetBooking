@@ -29,7 +29,7 @@ const BookingShopPage = () => {
   }, [navigate]);
   const handleUpdateStatus = async (id, status) => {
     try {
-      await scheduleService.updateStatus(id, status);
+      await scheduleService.updateStatusSchedule(id, status);
       // Cập nhật lại danh sách
       setBookings((prev) =>
         prev.map((item) => (item._id === id ? { ...item, status } : item))
@@ -111,7 +111,7 @@ const BookingShopPage = () => {
                             <button
                               className="bg-green-500 hover:bg-green-600 text-white text-[13px] px-3 py-1 rounded"
                               onClick={() =>
-                                handleUpdateStatus(booking._id, "Đã xác nhận")
+                                handleUpdateStatus(booking._id, "confirmed")
                               }
                             >
                               Xác nhận
@@ -119,7 +119,7 @@ const BookingShopPage = () => {
                             <button
                               className="bg-red-500 hover:bg-red-600 text-white text-[13px] px-3 py-1 rounded"
                               onClick={() =>
-                                handleUpdateStatus(booking._id, "Đã từ chối")
+                                handleUpdateStatus(booking._id, "cancelled")
                               }
                             >
                               Từ chối

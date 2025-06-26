@@ -34,6 +34,20 @@ const OrderShopPage = () => {
     fetchOrders();
   }, [navigate]);
 
+  const handleSubmitOrder = async (orderId) => {
+    try {
+      const status = "shipped";
+      const updatedOrder = await orderService.updateStatusOrder(orderId, status);
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === orderId ? updatedOrder : order
+        )
+      );
+    } catch (error) {
+      console.error("Error updating order status:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f9f5f0] pt-10 px-4">
       <div className="flex flex-col md:flex-row">
@@ -160,12 +174,17 @@ const OrderShopPage = () => {
                             className="border border-[#FF6B3C] px-2 py-1 text-[14px]"
                             rowSpan={order.products.length}
                           >
-                            <button
+                            {order.status === "pending" ? (
+                              <button
                               type="button"
                               className="bg-[#FF6B3C] text-white text-[14px] font-semibold rounded px-3 py-1 hover:bg-[#FF6B3C]/90"
+                              onClick={() => handleSubmitOrder(order._id)}
                             >
                               Xác nhận đóng gói
                             </button>
+                            ) : (
+                              <span className="text-green-500 font-semibold">Đã xác nhận</span>
+                            )}                  
                           </td>
                         )}
                       </tr>
