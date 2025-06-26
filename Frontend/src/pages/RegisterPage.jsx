@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { UserService } from "../services/userService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -133,13 +133,13 @@ const RegisterPage = () => {
             <div className="mb-4 flex items-center justify-between text-sm text-[#2a2e83]">
               <div>
                 Bạn đã có tài khoản?{" "}
-                <a className="font-semibold text-[#c56a38]" href="/login">
+                <Link className="font-semibold text-[#c56a38]" to="/login">
                   Đăng nhập
-                </a>
+                </Link>
               </div>
-              <a className="underline" href="#">
+              <Link className="underline" to="/forgot-password">
                 Quên mật khẩu?
-              </a>
+              </Link>
             </div>
 
             {/* Error */}

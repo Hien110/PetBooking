@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { UserService } from "../services/userService";
 import Alert from "@mui/material/Alert";
@@ -12,7 +12,7 @@ const OTPVerifyPage = () => {
 
   const location = useLocation();
   const email = location.state?.email;
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (email) {
       setOtpMessage(`Đã gửi mã OTP vào email thành công`);
@@ -51,7 +51,7 @@ const OTPVerifyPage = () => {
           setOtpMessage(res.message);
           setErrorMsg("");
           setTimeout(() => {
-            window.location.href = "/";
+            navigate("/");
           }, 3000);
         })
         .catch((err) => {
@@ -104,10 +104,10 @@ const OTPVerifyPage = () => {
               Xác nhận
             </button>
 
-            <a href="/register" className="text-[#2a2e83] mt-4">
+            <Link to="/register" className="text-[#2a2e83] mt-4">
               <ArrowBackIcon className="mr-1" />
               Quay lại
-            </a>
+            </Link>
           </div>
 
           {/* Right Section */}

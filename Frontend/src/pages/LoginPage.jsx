@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material"; // hoặc từ một file component nào đó
 import { UserService } from "../services/userService";
+
+import { Link } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -78,16 +80,18 @@ const LoginPage = () => {
             <div className="mb-4 flex items-center justify-between text-sm text-[#2a2e83]">
               <div>
                 Bạn đã có tài khoản chưa?{" "}
-                <a className="font-semibold text-[#c56a38]" href="/register">
+                <Link to="/register" className="font-semibold text-[#c56a38]">
                   Đăng kí ngay
-                </a>
+                </Link>
               </div>
-              <a className="underline" href="#">
+              <Link className="underline" to="/forgot-password">
                 Quên mật khẩu?
-              </a>
+              </Link>
             </div>
 
-          {errorMsg && <p className="text-red-500 text-sm mb-3">{errorMsg}</p>}
+            {errorMsg && (
+              <p className="text-red-500 text-sm mb-3">{errorMsg}</p>
+            )}
 
             <Button
               type="submit"

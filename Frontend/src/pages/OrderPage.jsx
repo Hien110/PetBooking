@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import orderService from "@/services/orderService";
 
 export default function OrderPage() {
   const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
 
   const location = useLocation();
   const { product, quantity } = location.state || {};
@@ -31,7 +33,7 @@ export default function OrderPage() {
 
     try {
       const newOrder = await orderService.createOrder(orderData);
-      window.location.href = `/order/order-success/${newOrder._id}`;
+      navigate(`/order/order-success/${newOrder._id}`);
       console.log("New Order:", newOrder);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -43,9 +45,9 @@ export default function OrderPage() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
-      window.location.href = "/login";
+      navigate("/login");
     } else if (user && (!user.address || !user.name || !user.phone)) {
-      window.location.href = `/profile/${user._id}`;
+      navigate(`/profile/${user._id}`);
     } else {
       setUser(user);
     }
@@ -69,7 +71,7 @@ export default function OrderPage() {
           </div>
           <button
             className="mt-3 sm:mt-0 bg-custom-orange text-white rounded-full px-6 py-2 text-[14px] font-semibold whitespace-nowrap hover:bg-[#e35e25] transition-colors duration-300 hover:cursor-pointer"
-            onClick={() => (window.location.href = `/profile/${user._id}`)}
+            onClick={() => navigate(`/profile/${user._id}`)}
           >
             Thay đổi
           </button>

@@ -5,10 +5,12 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderSuccessPage() {
   const [orderSuccess, setOrderSuccess] = useState(null);
 
+  const navigate = useNavigate();
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
@@ -96,7 +98,7 @@ export default function OrderSuccessPage() {
           </div>
         <button
           className="p-2 rounded-xl mt-8 bg-custom-orange flex items-center justify-center w-full hover:cursor-pointer text-white hover:bg-[#e35e25] transition-colors duration-300"
-          onClick={() => (window.location.href = "/")}
+          onClick={() => navigate("/")}
         >
           Quay lại trang chủ
         </button>
