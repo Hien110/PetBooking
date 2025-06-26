@@ -130,6 +130,23 @@ class orderController {
       return res.status(500).json({ message: "Server error", error });
     }
   }
+  async updateStatusOrder(req, res) {
+    try {
+      const { status } = req.body;
+      const order = await Order.findByIdAndUpdate(
+        req.params.id,
+        { status },
+        { new: true }
+      )
+        .populate("products.productId")
+        .populate("userId");
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      return res.status(200).json(order);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
 }
-
 module.exports = new orderController();

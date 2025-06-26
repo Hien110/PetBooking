@@ -33,6 +33,19 @@ function OrderPersonalPage() {
     fetchOrders();
   }, []);
 
+  const handleUpdateStatus = async (orderId, status) => {
+    try {
+      await orderService.updateStatusOrder(orderId, status);
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === orderId ? { ...order, status } : order
+        )
+      );
+    } catch (error) {
+      console.error("Error updating order status:", error);
+    }
+  };
+
   return (
     <div className="bg-[#FFFAF6] font-sans text-sm text-gray-900">
       <div className="grid grid-cols-4 gap-4 p-4">
@@ -60,11 +73,10 @@ function OrderPersonalPage() {
                 ].map((label, i) => (
                   <li className="flex-1" key={i}>
                     <button
-                      className={`w-full py-3 ${
-                        i === 0
-                          ? "text-orange-500 border-b-2 border-orange-500"
-                          : "hover:text-gray-900"
-                      }
+                      className={`w-full py-3 ${i === 0
+                        ? "text-orange-500 border-b-2 border-orange-500"
+                        : "hover:text-gray-900"
+                        }
                       hover:cursor-pointer focus:outline-none`}
                       role="tab"
                       tabIndex={i === 0 ? 0 : -1}
@@ -117,7 +129,21 @@ function OrderPersonalPage() {
                     <span className="text-[16px] text-orange-500">
                       ₫ {order.totalPrice.toLocaleString()}
                     </span>
-                    <span className="text-xs text-gray-400">{order.status}</span>
+                    {order.status === "pending" ? (
+                      <>
+                        <span className="text-xs text-gray-400">Đang xử lí</span>
+                        <button
+                          className="text-xs text-red-500 hover:cursor-pointer"
+                          onClick={() => handleUpdateStatus(order._id, "cancelled")}
+                        >
+                          Huỷ đơn
+                        </button>
+                      </>
+                    ) : order.status === "shipped" ? (
+                      <span className="text-xs text-green-500">Đang giao hàng</span>
+                    ) : order.status === "cancelled" ? (
+                      <span className="text-xs text-blue-500">Đã huỷ</span>
+                    ) : null}
                   </div>
                 </article>
               ))}

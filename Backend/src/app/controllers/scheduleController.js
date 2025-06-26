@@ -1,6 +1,24 @@
 const Schedule = require("../models/Schedule");
 
 class scheduleController {
+  async updateStatusSchedule(req, res) {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      const updatedSchedule = await Schedule.findByIdAndUpdate(
+        id,
+        { status },
+        { new: true }
+      );
+      if (!updatedSchedule) {
+        return res.status(404).json({ message: "Schedule not found" });
+      }
+      return res.status(200).json(updatedSchedule);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
   async getAllSchedules(req, res) {
     try {
       const schedules = await Schedule.find()
