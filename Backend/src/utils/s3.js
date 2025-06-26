@@ -1,7 +1,7 @@
 const { S3Client, ListBucketsCommand } = require("@aws-sdk/client-s3");
 const { Upload } = require("@aws-sdk/lib-storage");
 const fs = require("fs");
-require("dotenv").config({ path: "./src/.env" });
+require("dotenv").config({ path: "./.env" });
 
 const { S3_REGION, S3_ACCESS_KEY, S3_SECRET_KEY, S3_BUCKET_NAME } = process.env;
 

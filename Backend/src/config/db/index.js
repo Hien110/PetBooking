@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config({ path: './src/.env' });
+require('dotenv').config({ path: './.env' });
 
 // Lấy URL từ .env
 const { MONGO_URI } = process.env;
