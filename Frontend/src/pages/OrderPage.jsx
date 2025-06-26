@@ -51,7 +51,7 @@ export default function OrderPage() {
     } else {
       setUser(user);
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="bg-[#fffaf7] font-sans text-[14px] leading-[20px] text-[#2a2e6a] min-h-screen">
@@ -95,7 +95,7 @@ export default function OrderPage() {
               type="radio"
               className="custom-radio w-4 h-4 cursor-pointer border-custom-orange border-2 rounded-full"
             />
-            <span>LULU SHOP</span>
+            <span>{product?.sellerId?.name}</span>
           </div>
 
           {/* Product row */}
@@ -107,7 +107,7 @@ export default function OrderPage() {
               className="custom-radio w-4 h-4 cursor-pointer border-custom-orange border-2 rounded-full"
             />
             <img
-              src={product?.image || "/img/defaultProduct.jpg"}
+              src={product?.image[0] || "/img/defaultProduct.jpg"}
               alt="Snack Tell me cho Chó"
               className="w-[80px] h-[80px] object-cover rounded"
               width="80"
