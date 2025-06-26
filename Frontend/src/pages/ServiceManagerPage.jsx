@@ -1,11 +1,13 @@
 import React from "react";
 import Sidebar from "../components/shopSideBar";
-import ServiceCard from "../components/ServiceCard";
+
 import { useState, useEffect } from "react";
 import { ServiceService } from "@/services/serviceService";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_PATH } from "@/constants/routePath";
+import SubHeader from "@/components/SubHeader";
+import ServiceShopCard from "@/components/ServiceShopCard";
 
 const ServiceManager = () => {
   const [serviceList, setServiceList] = useState([]);
@@ -14,12 +16,16 @@ const ServiceManager = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || user.role !== "shop") {
+      navigate(ROUTE_PATH.HOME);
+    }
     const fetchServices = async () => {
-      const services = await ServiceService.getAllServices();
+      const services = await ServiceService.getServiceByUserId(user._id);
       setServiceList(services);
     };
     fetchServices();
-  }, []);
+  }, [navigate]);
 
   const indexOfLastService = currentPage * servicesPerPage;
   const indexOfFirstService = indexOfLastService - servicesPerPage;
@@ -33,17 +39,20 @@ const ServiceManager = () => {
 
   return (
     <div className="min-h-screen bg-[#f9f5f0] pt-10 px-4">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="flex flex-col md:flex-row">
-          {/* Sidebar */}
+      <div className="flex flex-col md:flex-row">
+        {/* Sidebar */}
+        <div className="w-full md:w-1/4">
           <Sidebar />
+        </div>
 
-          {/* Main content */}
+        {/* Main content */}
+        <div className="w-full md:w-3/4 flex flex-col space-y-6">
+          <SubHeader
+            title={"Quản lý Dịch vụ"}
+            subTitle={"Quản lí về dịch vụ của bạn"}
+          />
           <div className="flex-1 bg-white rounded-lg shadow-md p-6">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="w-2/3 text-center text-blue-800 text-lg font-normal select-none rounded-md bg-white py-2 shadow-sm">
-                Dịch Vụ
-              </h2>
               <Button
                 variant="contained"
                 color="primary"
@@ -62,7 +71,7 @@ const ServiceManager = () => {
             {/* Product grid - 4 columns */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {currentServices.map((service) => (
-                <ServiceCard
+                <ServiceShopCard
                   key={service._id}
                   service={service}
                   widthCard={200}

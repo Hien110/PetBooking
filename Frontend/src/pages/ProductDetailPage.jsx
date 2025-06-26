@@ -32,7 +32,7 @@ function ProductDetailPage() {
   return (
     <div className="bg-[#FFFAF6] min-h-screen">
       <ProductDetailCart product={product} />
-      <ProductShopTag product={product} />
+      <ProductShopTag user={product?.sellerId} />
       <ProductDescriptionCart product={product} />
       <h2 className="text-2xl font-bold mb-4 mx-20 text-custom-orange">Đánh Giá Sản Phẩm</h2>
     <ProductReviewCart />

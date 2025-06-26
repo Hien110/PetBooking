@@ -18,11 +18,16 @@ const OrderSuccessPage = React.lazy(() => import("../pages/OrderSuccessPage"));
 const OrderShopPage = React.lazy(() => import("../pages/OrderShopPage"));
 const ProductManagerPage = React.lazy(() => import("../pages/ProductManagerPage"));
 const ServiceManagerPage = React.lazy(() => import("../pages/ServiceManagerPage"));
+const ServiceManageDetailPage = React.lazy(() => import("../pages/ServiceManageDetailPage"));
 const ServiceDetailPage = React.lazy(() => import("../pages/ServiceDetailPage"));
 const ProductManageDetailPage = React.lazy(() => import("../pages/ProductManageDetailPage"));
 const CreateServicePage = React.lazy(() => import("../pages/CreateServicePage"));
 const CreateProductPage = React.lazy(() => import("../pages/CreateProductPage"));
 const OrderPersonalPage = React.lazy(() => import("../pages/OrderPersonalPage"));
+const BookingServicePage = React.lazy(() => import("../pages/BookingServicePage"));
+const BookingSuccessPage = React.lazy(() => import("../pages/BookingSuccessPage"));
+const BookingPersonalPage = React.lazy(() => import("../pages/BookingPersonalPage"));
+const BookingShopPage = React.lazy(() => import("../pages/BookingShopPage"));
 
 const AppRoute = [
   { path: ROUTE_PATH.HOME, page: HomePage, layout: MainLayout },
@@ -42,10 +47,16 @@ const AppRoute = [
   { path: ROUTE_PATH.VERIFY, page: OTPVerifyPage, layout: MainLayout },
   { path: ROUTE_PATH.PRODUCT_SHOP_MANAGER, page: ProductManagerPage, layout: MainLayout },
   { path: ROUTE_PATH.SERVICE_SHOP_MANAGER, page: ServiceManagerPage, layout: MainLayout },
-  { path: ROUTE_PATH.SERVICE_DETAIL, page: ServiceDetailPage, layout: MainLayout },
+  { path: ROUTE_PATH.SERVICE_DETAIL, page: ServiceManageDetailPage, layout: MainLayout },
   { path: ROUTE_PATH.PRODUCT_MANAGE_DETAIL, page: ProductManageDetailPage, layout: MainLayout },
   { path: ROUTE_PATH.CREATE_SERVICE, page: CreateServicePage, layout: MainLayout },
   { path: ROUTE_PATH.CREATE_PRODUCT, page: CreateProductPage, layout: MainLayout },
+
+  //service booking
+  { path: ROUTE_PATH.BOOKING_SERVICE, page: BookingServicePage, layout: MainLayout },
+  { path: ROUTE_PATH.BOOKING_SERVICE_SUCCESS, page: BookingSuccessPage, layout: MainLayout },
+  { path: ROUTE_PATH.BOOKING_PERSONAL, page: BookingPersonalPage, layout: MainLayout },
+  { path: ROUTE_PATH.BOOKING_SHOP, page: BookingShopPage, layout: MainLayout },
 ];
 
 export default AppRoute;
