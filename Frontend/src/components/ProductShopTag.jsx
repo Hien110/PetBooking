@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Box, Button } from "@mui/material";
 
-function ProductShopTag({ product }) {
+function ProductShopTag({ user }) {
    
   return (
       <div className="mr-20 ml-20 bg-white rounded-3xl justify-around items-center justify flex flex-col my-10 flex-row gap-6 py-4 shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
@@ -14,7 +14,7 @@ function ProductShopTag({ product }) {
           />
           <div className="flex flex-col text-center sm:text-left">
             <span className="text-[#1A1A1A] font-semibold text-base leading-5">
-              {product?.sellerId?.name || "Tên Cửa Hàng"}
+              {user?.name || "Tên Cửa Hàng"}
             </span>
             <span className="text-[#6B7280] text-xs leading-4 mt-1">
               Online 12 Phút Trước

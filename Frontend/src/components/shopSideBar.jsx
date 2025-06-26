@@ -62,10 +62,10 @@ const Sidebar = () => {
           Quản lí đặt hàng
         </button>
         <button
-          onClick={() => handleClick("/shop/appointments")}
-          className={getButtonStyle("/shop/appointments")}
+          onClick={() => handleClick("/shop/booking-shop")}
+          className={getButtonStyle("/shop/booking-shop")}
         >
-          Quản lí lịch khám
+          Quản lí đặt dịch vụ
         </button>
       </div>
     </div>

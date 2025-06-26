@@ -59,4 +59,15 @@ export const ServiceService = {
       );
     }
   },
+
+  getServiceByUserId: async (userId) => {
+    try {
+      const res = await axios.get(`${API_URL}/getServiceByUserId/${userId}`);
+      return res.data;
+    } catch (error) {
+      throw new Error(
+        error.response?.data?.message || "Lấy dịch vụ theo người dùng thất bại"
+      );
+    }
+  },
 };

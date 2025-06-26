@@ -1,9 +1,9 @@
 import React from "react";
 import Sidebar from "../components/shopSideBar";
-import ProductManageDetail from "@/components/ProductManageDetail";
+import ServiceDetail from "../components/ServiceDetail";
 import SubHeader from "@/components/SubHeader";
 
-const ProductManageDetailPage = () => {
+const ServiceManageDetailPage = () => {
   return (
     <div className="min-h-screen bg-[#f9f5f0] pt-10 px-4">
       <div className="flex flex-col md:flex-row">
@@ -14,13 +14,13 @@ const ProductManageDetailPage = () => {
 
         <div className="w-full md:w-3/4 flex flex-col space-y-6">
           <SubHeader
-            title={"Chi tiết Sản phẩm"}
-            subTitle={"Thông tin chi tiết về sản phẩm của bạn"}
+            title={"Chi tiết Dịch vụ"}
+            subTitle={"Thông tin chi tiết về dịch vụ của bạn"}
           />
 
           {/* Main content */}
           <div className="flex-1 bg-white rounded-lg shadow-md p-6 w-full">
-            <ProductManageDetail />
+            <ServiceDetail />
           </div>
         </div>
       </div>
@@ -28,4 +28,4 @@ const ProductManageDetailPage = () => {
   );
 };
 
-export default ProductManageDetailPage;
+export default ServiceManageDetailPage;

@@ -11,7 +11,7 @@ export const ROUTE_PATH = {
   SHOP: "/shop",
   ORDER: "/order/:id",
   ORDER_SUCCESS: "/order/order-success/:id",
-  ORDER_PERSONAL: "/order-personal/:id",
+  ORDER_PERSONAL: "/order-personal",
   ORDER_SHOP: "/shop/order-shop",
   PRODUCT_SHOP_MANAGER: "/shop/product-manager",
   SERVICE_SHOP_MANAGER: "/shop/service-manager",
@@ -19,4 +19,8 @@ export const ROUTE_PATH = {
   PRODUCT_MANAGE_DETAIL: "/shop/product-manager/detail/:id",
   CREATE_SERVICE: "/shop/create-service",
   CREATE_PRODUCT: "/shop/create-product",
+  BOOKING_SERVICE: "/booking-service/:id",
+  BOOKING_SERVICE_SUCCESS: "/booking-service-success/:id",
+  BOOKING_PERSONAL: "/booking-personal",
+  BOOKING_SHOP: "/shop/booking-shop",
 };

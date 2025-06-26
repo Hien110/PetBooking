@@ -14,5 +14,6 @@ router.put("/updateService/:id", serviceController.editService);
 router.post("/updateServicePrice", serviceController.editServicePrice);
 router.post("/updateWeightRange", serviceController.editWeightRange);
 router.get("/:id", serviceController.getServiceById);
+router.get("/getServiceByUserId/:userId", serviceController.getServiceByUserId);
 
 module.exports = router;

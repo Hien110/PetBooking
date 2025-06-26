@@ -11,7 +11,7 @@ function OrderPersonalPage() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const userId = window.location.pathname.split("/").pop();
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
     const fetchUser = async () => {
       try {
         const user = await UserService.getUserById(userId);

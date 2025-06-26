@@ -6,7 +6,6 @@ class serviceController {
   async gettAllServices(req, res) {
     try {
       const services = await Service.find()
-        .populate({ path: "image" })
         .populate("userId");
       return res.status(200).json(services);
     } catch (error) {
@@ -182,8 +181,19 @@ class serviceController {
   async getServiceById(req, res) {
     try {
       const { id } = req.params;
-      const service = await Service.findById(id).populate({ path: "image" });
+      const service = await Service.findById(id).populate("userId");
       return res.status(200).json(service);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  }
+
+  async getServiceByUserId(req, res) {
+    try {
+      const { userId } = req.params;
+      const services = await Service.find({ userId })
+        .populate("userId");
+      return res.status(200).json(services);
     } catch (error) {
       return res.status(500).json({ message: "Server error", error });
     }
